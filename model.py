@@ -1,7 +1,7 @@
 SIMULATOR_STEP_SIZE = 0.02
-FRICTION = 0.1
-K_P = 0.2
-K_I = 0.02
+FRICTION = 1.0
+K_P = 0.6
+K_I = 0.6
 
 class Simulator:
 
@@ -37,6 +37,7 @@ class Car:
         self.controller = controller
 
 class CarController:
+
     def __init__(self, car):
         self.car = car    
         self.integrated_error = 0.0
@@ -46,3 +47,5 @@ class CarController:
         self.integrated_error += SIMULATOR_STEP_SIZE * error
         u = K_P * error + K_I * self.integrated_error
         return u
+
+

@@ -12,9 +12,9 @@ def test_simple_pid_speedcontrol():
     r = []
     t = []
     
-    while sim.time < 60:
+    while sim.time < 40:
         sim.next_step()
-        if (sim.time > 30):
+        if (sim.time > 20):
             car.desired_velocity = 70./3.6
         v.append(car.velocity)
         r.append(car.desired_velocity)
@@ -28,7 +28,5 @@ def test_simple_pid_speedcontrol():
     pylab.grid(True)
     pylab.show()
 
-
 test_simple_pid_speedcontrol()
-
 
