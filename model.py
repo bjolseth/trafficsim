@@ -36,7 +36,7 @@ class Car:
     def set_controller(self, controller):
         self.controller = controller
 
-class CarController:
+class SpeedController:
 
     def __init__(self, car):
         self.car = car    
@@ -48,4 +48,16 @@ class CarController:
         u = K_P * error + K_I * self.integrated_error
         return u
 
+class FollowCarController:
 
+    def __init__(self, car, car_to_follow):
+        self.car = car
+        self.car_to_follow = car_to_follow
+        self.desired_space = 3
+        
+    def set_desired_space(time):
+        self.desired_space = time
+        
+    def calculate_output(self):
+        dist = self.car_to_follow.pos - car.pos
+        

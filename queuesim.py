@@ -1,11 +1,13 @@
 from model import *
 import pylab
 
+MS_2_KMH = 3.6
+
 def test_simple_pid_speedcontrol():
     car = Car()
-    controller = CarController(car)
+    controller = SpeedController(car)
     car.set_controller(controller)
-    car.desired_velocity = 80./3.6
+    car.desired_velocity = 80./MS_2_KMH
     sim = Simulator([car])
     
     v = []
@@ -15,9 +17,9 @@ def test_simple_pid_speedcontrol():
     while sim.time < 40:
         sim.next_step()
         if (sim.time > 20):
-            car.desired_velocity = 70./3.6
-        v.append(car.velocity)
-        r.append(car.desired_velocity)
+            car.desired_velocity = 70./MS_2_KMH
+        v.append(car.velocity*MS_2_KMH)
+        r.append(car.desired_velocity*MS_2_KMH)
         t.append(sim.time)
         
 
