@@ -3,6 +3,35 @@ import pylab
 
 MS_2_KMH = 3.6
 
+
+def test_cars_following():
+
+    create_cars(3, 80./MS_2_KMH)
+    
+    sim = Simulator([car1, car2])
+    while sim.time < 100:
+        sim.next_step()
+
+
+def create_cars(n, speed):
+    cars = []
+        
+    leader = Car()
+    leader.velocity = speed
+    leader.desired_velocity = speed
+    cars.append(leader)
+    
+    previous = leader    
+    for i in range(2, n):
+        car = Car()
+        car.velocity = speed
+        c = SpeedController(previous)
+        c = FollowCarController(previous, car)
+        c.pos = c.set_desired_time_difference(speed)
+        cars.append(car)
+        
+   return cars
+
 def test_simple_pid_speedcontrol():
     car = Car()
     controller = SpeedController(car)

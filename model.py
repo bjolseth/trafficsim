@@ -2,6 +2,7 @@ SIMULATOR_STEP_SIZE = 0.02
 FRICTION = 1.0
 K_P = 0.6
 K_I = 0.6
+DESIRED_TIME_DIFFERENCE = 3.0
 
 class Simulator:
 
@@ -53,11 +54,19 @@ class FollowCarController:
     def __init__(self, car, car_to_follow):
         self.car = car
         self.car_to_follow = car_to_follow
-        self.desired_space = 3
+        self.desired_time_difference = DESIRED_TIME_DIFFERENCE
+        self.integrated_error = 0.0
         
-    def set_desired_space(time):
-        self.desired_space = time
+    def set_desired_time_difference(time):
+        self.desired_time_difference = time
         
     def calculate_output(self):
         dist = self.car_to_follow.pos - car.pos
+        desired_dist = car_to_follow.velocity * self.desired_time_difference
+        
+        error = dist - desired_dist
+        self.integrated_error += SIMULATOR_STEP_SIZE * error
+        u = K_P * error + K_I * self.integrated_error
+        
+        
         
