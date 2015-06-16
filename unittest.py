@@ -6,7 +6,7 @@ import sys
 
 MS_2_KMH = 3.6
 
-def test_simple_pid_speedcontrol():
+def test_that_simple_pid_speedcontrol_reaches_desired_speed():
     car = Car()
     controller = SpeedController(car)
     car.set_controller(controller)
@@ -30,4 +30,4 @@ def test_simple_pid_speedcontrol():
     return abs(car.desired_velocity - car.velocity) < tolerance
 
 
-sys.exit(0 if test_simple_pid_speedcontrol() else 1)
+sys.exit(0 if test_that_simple_pid_speedcontrol_reaches_desired_speed() else 1)
