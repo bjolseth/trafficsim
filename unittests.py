@@ -20,7 +20,7 @@ class TestSimpleSpeedControl(unittest.TestCase):
         r = []
         t = []
         
-        while sim.time < 4:
+        while sim.time < 40:
             sim.next_step()
             if (sim.time > 20):
                 car.desired_velocity = 70./MS_2_KMH
